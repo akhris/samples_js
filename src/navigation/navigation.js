@@ -1,4 +1,9 @@
+import MemoryIcon from '@mui/icons-material/Memory';
 import PeopleIcon from '@mui/icons-material/People';
+import PlaceIcon from '@mui/icons-material/Place';
+import ConstructionIcon from '@mui/icons-material/Construction';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 class NavItem {
     constructor(key, title, icon) {
@@ -8,12 +13,16 @@ class NavItem {
     }
 }
 
-const navItems = [
-    new NavItem("samples", "Образцы", "memory"),
-    new NavItem("people", "Сотрудники", "people"),
-    new NavItem("places", "Места", "place"),
-    new NavItem("operations", "Операции", "construction"),
-    new NavItem("measurements", "Измерения", "table_chart")
-];
+const navItems = {
+    topItems: [
+    new NavItem("samples", "Образцы", (<MemoryIcon />)),
+    new NavItem("people", "Сотрудники", (<PeopleIcon />)),
+    new NavItem("places", "Места", (<PlaceIcon />)),
+    new NavItem("operations", "Операции", (<ConstructionIcon />)),
+    new NavItem("measurements", "Измерения", (<ListAltIcon />))
+],
+    settings: new NavItem("settings", "Настройки",(<SettingsIcon/>))
+};
+
 
 export default navItems;

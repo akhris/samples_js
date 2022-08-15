@@ -5,33 +5,43 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Icon } from '@mui/material';
+import { Divider } from '@mui/material';
 
 function SideBar() {
     return (
 
+        <div>
+            <List>
+                {
 
-        <List>
-            {
-                navItems.map(navItem => {
-                    return (
+                    navItems.topItems.map(navItem => {
+                        return (
+                            <ListItem key={navItem.key} component={Link} to={navItem.key} disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        {navItem.icon}
+                                    </ListItemIcon>
+                                    <ListItemText primary={navItem.title} />
+                                </ListItemButton>
+                            </ListItem>
+                        );
+                    })
 
-                        <ListItem key={navItem.key} component={Link} to={navItem.key} disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <Icon>{navItem.icon}</Icon>
-                                </ListItemIcon>
-                                <ListItemText primary={navItem.title} />
-                            </ListItemButton>
-                        </ListItem>
+                }
+            </List>
+            <Divider />
 
-                    );
-                })
-            }
-        </List>
-
+            <List>
+            <ListItem key={navItems.settings.key} component={Link} to={navItems.settings.key} disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        {navItems.settings.icon}
+                                    </ListItemIcon>
+                                    <ListItemText primary={navItems.settings.title} />
+                                </ListItemButton>
+                            </ListItem>
+            </List>
+        </div>
         /* <ul>
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/samples'>Образцы</Link></li>
