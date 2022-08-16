@@ -11,7 +11,9 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useTheme } from '@mui/material/styles';
 import { ColorModeContext } from './ColorModeToggle';
-// import { TitleContext } from '../navigation/title-context';
+import { FolderSpecialRounded } from '@mui/icons-material';
+import FilePicker from './FilePicker';
+import { Input } from '@mui/material';
 
 
 
@@ -24,15 +26,36 @@ function RootContent(props) {
 
     const colorMode = React.useContext(ColorModeContext);
 
+    const inputFile = React.useRef(null);
+
+    const onButtonClick = () => {
+        // `current` points to the mounted file input element
+        inputFile.current.click();
+    };
+
     // const title =  React.useContext(TitleContext);
+
+
 
     return (
         <Box sx={{ display: 'flex' }}>
+            <input type='file' id='file' ref={inputFile} style={{ display: 'none' }} onChange={(event) => {
+                console.log(event.target.files)
+                console.log(inputFile.current.files[0])
+            }} />
             {/* <CssBaseline /> */}
             <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar>
                     <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-                        {/* {title} */}
+                        <IconButton
+                            onClick={onButtonClick}
+                            color="inherit">
+                            <FolderSpecialRounded />
+                        </IconButton>
+
+                        { inputFile.current?inputFile.current.files[0]:"" }
+
+
                     </Typography>
                     <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
                         {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
@@ -56,7 +79,7 @@ function RootContent(props) {
                 <MainContent />
 
             </Box>
-        </Box>
+        </Box >
     );
 }
 
