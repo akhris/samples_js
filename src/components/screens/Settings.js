@@ -12,18 +12,13 @@ function Settings() {
     const theme = useTheme();
 
     const colorMode = React.useContext(ColorModeContext);
+
     return (
         <div>
             <h1>Settings</h1>
-            <IconButton sx={{ ml: 1 }} onClick={
-                colorMode.toggleColorMode
-            //     useEffect(() => {
-            //     localStorage.setItem("theme_mode", theme.palette.mode === 'dark' ? "light" : "dark")
-            // }
-            // )
-            } color="inherit">
-            {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
+            <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+                {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
         </div >
 
     );

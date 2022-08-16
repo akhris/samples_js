@@ -19,9 +19,9 @@ const navItems = {
     new NavItem("people", "Сотрудники", (<PeopleIcon />)),
     new NavItem("places", "Места", (<PlaceIcon />)),
     new NavItem("operations", "Операции", (<ConstructionIcon />)),
+    new NavItem("parameters", "Эл.параметры", (<SettingsIcon />)),
     new NavItem("measurements", "Измерения", (<ListAltIcon />))
-],
-    settings: new NavItem("settings", "Настройки",(<SettingsIcon/>))
+]
 };
 
 

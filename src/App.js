@@ -1,47 +1,22 @@
 import './App.css';
 import * as React from 'react';
-import { useState, useEffect } from "react";
 import { HashRouter } from 'react-router-dom';
 import RootContent from './components/RootContent';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { ColorModeContext } from './components/ColorModeToggle';
 
+
+
 function App() {
-
-  // const currentTheme = useState(() => {
-  //   // getting stored value or default "light" mode
-  //   const saved = localStorage.getItem("theme_mode");
-  //   return saved || "light"
-  // })
-
-  // const theme = createTheme({
-  //   palette: {
-  //     mode: currentTheme == 'light' ? 'light' : 'dark'
-  //   }
-  // })
-
-  // const theme = useTheme();
-  // const colorMode = React.useContext(ColorModeContext);
-
-
-  var mode = useState(() => {
-    // getting stored value or default "light" mode
-    const saved = localStorage.getItem("theme_mode");
-    return saved || "light"
-  },
-    useEffect(() => {
-      localStorage.setItem("theme_mode", theme.palette.mode === 'dark' ? "light" : "dark")
-    }
-    )
-  )
-  // const [mode, setMode] = React.useState('light');
+  const [mode, setMode] = React.useState('light');
 
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        mode = (mode === 'light' ? 'dark' : 'light');
-
+        setMode((prevMode) => {
+          const newMode = prevMode === 'light' ? 'dark' : 'light';
+          return (newMode);
+        });
       },
     }),
     [],
@@ -51,7 +26,7 @@ function App() {
     () =>
       createTheme({
         palette: {
-          colorMode,
+          mode,
         },
       }),
     [mode],
@@ -60,9 +35,11 @@ function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <HashRouter>
-          <RootContent />
-        </HashRouter>
+        {/* <TitleContext.Provider value={title}> */}
+          <HashRouter>
+            <RootContent />
+          </HashRouter>
+        {/* </TitleContext.Provider> */}
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
